@@ -35,5 +35,8 @@ ENABLE_VENDOR_RIL_SERVICE := true
 # Security Patch Level
 VENDOR_SECURITY_PATCH := 2020-05-05
 
+# Properties
+TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
+
 # Inherit the proprietary files
 include vendor/xiaomi/tissot/BoardConfigVendor.mk
