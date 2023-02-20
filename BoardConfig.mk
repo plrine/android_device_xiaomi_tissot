@@ -4,15 +4,10 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-TARGET_KERNEL_VERSION := 4.9
-
 # Inherit from common msm8953-common
 include device/xiaomi/msm8953-common/BoardConfigCommon.mk
 
 DEVICE_PATH := device/xiaomi/tissot
-
-# Camera
-TARGET_SUPPORT_HAL1 := false
 
 # Display
 TARGET_SCREEN_DENSITY := 440
