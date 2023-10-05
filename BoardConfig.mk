@@ -13,7 +13,6 @@ DEVICE_PATH := device/xiaomi/tissot
 TARGET_SCREEN_DENSITY := 440
 
 # Filesystem
-BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
 BOARD_USES_RECOVERY_AS_BOOT := true
 TARGET_NO_RECOVERY := true
 
