@@ -12,6 +12,9 @@ DEVICE_PATH := device/xiaomi/tissot
 # Display
 TARGET_SCREEN_DENSITY := 440
 
+# HIDL
+DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest.xml
+
 # Kernel
 TARGET_KERNEL_CONFIG += xiaomi/tissot.config
 
