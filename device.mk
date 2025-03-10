@@ -90,8 +90,5 @@ PRODUCT_PACKAGES += \
     update_engine_sideload \
     update_verifier
 
-PRODUCT_PACKAGES_DEBUG += \
-    update_engine_client
-
 # Inherit the proprietary files
 $(call inherit-product, vendor/xiaomi/tissot/tissot-vendor.mk)
