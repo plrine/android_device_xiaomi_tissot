@@ -3,6 +3,8 @@ persist.vendor.audio.fluence.speaker=true
 persist.vendor.audio.fluence.voicecall=true
 persist.vendor.audio.fluence.voicerec=false
 ro.vendor.audio.sdk.fluencetype=fluence
+vendor.audio.platform_info_xml.path=/vendor/etc/audio_platform_info.xml
+vendor.audio.mixer_xml.path=/vendor/etc/mixer_paths_mtp.xml
 
 # Camera
 vendor.camera.aux.packagelist=org.codeaurora.snapcam,com.android.camera,org.lineageos.snap
