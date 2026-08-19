@@ -137,7 +137,7 @@ ifneq ($(TARGET_KERNEL_VERSION),$(filter $(TARGET_KERNEL_VERSION),3.18 4.4 4.9))
 LOCAL_SHARED_LIBRARIES += libion
 endif
 ifeq ($(USE_DISPLAY_SERVICE),true)
-LOCAL_SHARED_LIBRARIES += android.frameworks.displayservice@1.0 libhidlbase
+LOCAL_SHARED_LIBRARIES += lineage.frameworks.displayservice@1.0 libhidlbase
 else
 LOCAL_SHARED_LIBRARIES += libgui
 endif
