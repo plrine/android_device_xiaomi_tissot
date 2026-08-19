@@ -249,7 +249,7 @@ cc_library_shared {
         "libsync",
         "libui",
         "libutils",
-        "android.frameworks.displayservice@1.0",
+        "lineage.frameworks.displayservice@1.0",
     ],
 
     static_libs: [
