@@ -1,0 +1,292 @@
+cc_library_headers {
+    name: "camera_common_headers",
+    export_include_dirs: [
+        "QCamera2/stack/common",
+    ],
+    vendor_available: true,
+}
+
+cc_library_headers {
+    name: "libqomx_core_headers",
+    export_include_dirs: [
+        "mm-image-codec/qexif",
+        "mm-image-codec/qomx_core",
+    ],
+    vendor_available: true,
+}
+
+cc_library_shared {
+    name: "libqomx_core",
+    vendor: true,
+    compile_multilib: "32",
+
+    srcs: [
+        "mm-image-codec/qomx_core/qomx_core.c",
+    ],
+
+    cflags: [
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-Wno-unused-variable",
+        "-g",
+        "-O0",
+    ],
+
+    header_libs: [
+        "libqomx_core_headers",
+        "libutils_headers",
+        "media_plugin_headers",
+    ],
+
+    shared_libs: [
+        "libcutils",
+        "libdl",
+        "liblog",
+    ],
+}
+
+cc_library_shared {
+    name: "libmmcamera_interface",
+    vendor: true,
+    compile_multilib: "32",
+
+    srcs: [
+        "QCamera2/stack/mm-camera-interface/src/mm_camera.c",
+        "QCamera2/stack/mm-camera-interface/src/mm_camera_channel.c",
+        "QCamera2/stack/mm-camera-interface/src/mm_camera_interface.c",
+        "QCamera2/stack/mm-camera-interface/src/mm_camera_sock.c",
+        "QCamera2/stack/mm-camera-interface/src/mm_camera_stream.c",
+        "QCamera2/stack/mm-camera-interface/src/mm_camera_thread.c",
+    ],
+
+    cflags: [
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-parameter",
+        "-Wno-unused-variable",
+        "-Wno-implicit-function-declaration",
+        "-DDAEMON_PRESENT",
+        "-DSYSTEM_HEADER_PREFIX=sys",
+        "-DUSE_ION",
+        "-DVENUS_PRESENT",
+        "-D_ANDROID_",
+        "-DQCAMERA_REDEFINE_LOG",
+        "-DCAMERA_ION_HEAP_ID=ION_IOMMU_HEAP_ID",
+    ],
+
+    local_include_dirs: [
+        "QCamera2/stack/mm-camera-interface/inc",
+    ],
+
+    include_dirs: [
+        "system/media/camera/include",
+    ],
+
+    export_include_dirs: [
+        "QCamera2/stack/mm-camera-interface/inc",
+    ],
+
+    header_libs: [
+        "camera_common_headers",
+        "display_headers",
+        "generated_kernel_headers",
+        "libhardware_headers",
+        "media_plugin_headers",
+    ],
+
+    shared_libs: [
+        "libcutils",
+        "libdl",
+        "liblog",
+    ],
+}
+
+cc_library_shared {
+    name: "libmmjpeg_interface",
+    vendor: true,
+    compile_multilib: "32",
+
+    srcs: [
+        "QCamera2/stack/mm-jpeg-interface/src/mm_jpeg.c",
+        "QCamera2/stack/mm-jpeg-interface/src/mm_jpeg_exif.c",
+        "QCamera2/stack/mm-jpeg-interface/src/mm_jpeg_interface.c",
+        "QCamera2/stack/mm-jpeg-interface/src/mm_jpeg_ionbuf.c",
+        "QCamera2/stack/mm-jpeg-interface/src/mm_jpeg_mpo_composer.c",
+        "QCamera2/stack/mm-jpeg-interface/src/mm_jpeg_queue.c",
+        "QCamera2/stack/mm-jpeg-interface/src/mm_jpegdec.c",
+        "QCamera2/stack/mm-jpeg-interface/src/mm_jpegdec_interface.c",
+    ],
+
+    cflags: [
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-Wno-unused-variable",
+        "-D_ANDROID_",
+        "-DQCAMERA_REDEFINE_LOG",
+        "-DUSE_ION",
+        "-DMM_JPEG_CONCURRENT_SESSIONS_COUNT=1",
+        "-DSYSTEM_HEADER_PREFIX=sys",
+    ],
+
+    local_include_dirs: [
+        "QCamera2/stack/mm-jpeg-interface/inc",
+    ],
+
+    header_libs: [
+        "camera_common_headers",
+        "generated_kernel_headers",
+        "libion_headers",
+        "libqomx_core_headers",
+        "libutils_headers",
+        "media_plugin_headers",
+    ],
+
+    export_include_dirs: [
+        "QCamera2/stack/mm-jpeg-interface/inc",
+    ],
+
+    shared_libs: [
+        "libcutils",
+        "libdl",
+        "libion",
+        "liblog",
+        "libmmcamera_interface",
+        "libqomx_core",
+    ],
+}
+
+cc_library_shared {
+    name: "libmmlib2d_interface",
+    vendor: true,
+    compile_multilib: "32",
+
+    srcs: [
+        "QCamera2/stack/mm-lib2d-interface/src/mm_lib2d.c",
+    ],
+
+    cflags: [
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-Wno-unused-variable",
+        "-D_ANDROID_",
+        "-DQCAMERA_REDEFINE_LOG",
+        "-DUSE_ION",
+    ],
+
+    local_include_dirs: [
+        "QCamera2/stack/mm-lib2d-interface/inc",
+    ],
+
+    header_libs: [
+        "camera_common_headers",
+        "generated_kernel_headers",
+        "libion_headers",
+        "libutils_headers",
+    ],
+
+    export_include_dirs: [
+        "QCamera2/stack/mm-lib2d-interface/inc",
+    ],
+
+    shared_libs: [
+        "libcutils",
+        "libdl",
+        "libion",
+        "liblog",
+        "libmmcamera_interface",
+    ],
+}
+
+cc_library_shared {
+    name: "camera.msm8953",
+    relative_install_path: "hw",
+    vendor: true,
+    compile_multilib: "32",
+
+    srcs: [
+        "QCamera2/QCamera2Factory.cpp",
+        "QCamera2/QCamera2Hal.cpp",
+        "QCamera2/util/QCameraBufferMaps.cpp",
+        "QCamera2/util/QCameraCmdThread.cpp",
+        "QCamera2/util/QCameraCommon.cpp",
+        "QCamera2/util/QCameraDisplay.cpp",
+        "QCamera2/util/QCameraFlash.cpp",
+        "QCamera2/util/QCameraPerf.cpp",
+        "QCamera2/util/QCameraQueue.cpp",
+        "QCamera2/HAL3/QCamera3Channel.cpp",
+        "QCamera2/HAL3/QCamera3CropRegionMapper.cpp",
+        "QCamera2/HAL3/QCamera3HWI.cpp",
+        "QCamera2/HAL3/QCamera3Mem.cpp",
+        "QCamera2/HAL3/QCamera3PostProc.cpp",
+        "QCamera2/HAL3/QCamera3Stream.cpp",
+        "QCamera2/HAL3/QCamera3StreamMem.cpp",
+        "QCamera2/HAL3/QCamera3VendorTags.cpp",
+    ],
+
+    cflags: [
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-Wno-unused-variable",
+        "-Wno-compound-token-split-by-macro",
+        "-DQCAMERA_HAL3_SUPPORT",
+        "-DSYSTEM_HEADER_PREFIX=sys",
+        "-DHAS_MULTIMEDIA_HINTS",
+        "-D_ANDROID",
+        "-DUSE_DISPLAY_SERVICE",
+        "-DDEFAULT_DENOISE_MODE_ON",
+        "-DHAL3",
+        "-DQCAMERA_REDEFINE_LOG",
+        "-DVENUS_PRESENT",
+    ],
+
+    local_include_dirs: [
+        "QCamera2/HAL",
+        "QCamera2/HAL3",
+        "QCamera2/include",
+        "QCamera2/util",
+    ],
+
+    header_libs: [
+        "camera_common_headers",
+        "display_headers",
+        "generated_kernel_headers",
+        "libandroid_sensor_headers",
+        "libcutils_headers",
+        "libhardware_headers",
+        "libion_headers",
+        "libomxcore_headers",
+        "libqomx_core_headers",
+        "libstagefrighthw_headers",
+        "libsystem_headers",
+        "media_plugin_headers",
+    ],
+
+    shared_libs: [
+        "libbinder",
+        "libcamera_metadata",
+        "libcutils",
+        "libdl",
+        "libhardware",
+        "libhidlbase",
+        "libion",
+        "liblog",
+        "libmmcamera_interface",
+        "libmmjpeg_interface",
+        "libqdMetaData",
+        "libqservice",
+        "libsync",
+        "libui",
+        "libutils",
+        "lineage.frameworks.displayservice@1.0",
+    ],
+
+    static_libs: [
+        "android.hardware.camera.common@1.0-helper",
+    ],
+}
