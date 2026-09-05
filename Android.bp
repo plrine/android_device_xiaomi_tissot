@@ -1,5 +1,8 @@
 soong_namespace {
     imports: [
         "hardware/xiaomi",
+        "hardware/qcom-caf/msm8953",
+        "vendor/qcom/opensource/commonsys-intf/display",
+        "vendor/qcom/opensource/display",
     ],
 }
