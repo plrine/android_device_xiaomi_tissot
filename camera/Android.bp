@@ -135,7 +135,7 @@ cc_library_shared {
     ],
 
     include_dirs: [
-        "system/memory/libion/include",
+        "system/memory/libion/include_legacy",
         "system/memory/libion/kernel-headers",
     ],
 
@@ -214,7 +214,7 @@ cc_library_shared {
     ],
 
     include_dirs: [
-        "system/memory/libion/include",
+        "system/memory/libion/include_legacy",
         "system/memory/libion/kernel-headers",
     ],
 
