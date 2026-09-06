@@ -134,6 +134,11 @@ cc_library_shared {
         "QCamera2/stack/mm-jpeg-interface/inc",
     ],
 
+    include_dirs: [
+        "system/memory/libion/include_legacy",
+        "system/memory/libion/kernel-headers",
+    ],
+
     header_libs: [
         "camera_common_headers",
         "generated_kernel_headers",
@@ -154,50 +159,6 @@ cc_library_shared {
         "liblog",
         "libmmcamera_interface",
         "libqomx_core",
-    ],
-}
-
-cc_library_shared {
-    name: "libmmlib2d_interface",
-    vendor: true,
-    compile_multilib: "32",
-
-    srcs: [
-        "QCamera2/stack/mm-lib2d-interface/src/mm_lib2d.c",
-    ],
-
-    cflags: [
-        "-Wall",
-        "-Wextra",
-        "-Werror",
-        "-Wno-unused-parameter",
-        "-Wno-unused-variable",
-        "-D_ANDROID_",
-        "-DQCAMERA_REDEFINE_LOG",
-        "-DUSE_ION",
-    ],
-
-    local_include_dirs: [
-        "QCamera2/stack/mm-lib2d-interface/inc",
-    ],
-
-    header_libs: [
-        "camera_common_headers",
-        "generated_kernel_headers",
-        "libion_headers",
-        "libutils_headers",
-    ],
-
-    export_include_dirs: [
-        "QCamera2/stack/mm-lib2d-interface/inc",
-    ],
-
-    shared_libs: [
-        "libcutils",
-        "libdl",
-        "libion",
-        "liblog",
-        "libmmcamera_interface",
     ],
 }
 
@@ -246,10 +207,15 @@ cc_library_shared {
     ],
 
     local_include_dirs: [
+        "QCamera2",
         "QCamera2/HAL",
         "QCamera2/HAL3",
-        "QCamera2/include",
         "QCamera2/util",
+    ],
+
+    include_dirs: [
+        "system/memory/libion/include_legacy",
+        "system/memory/libion/kernel-headers",
     ],
 
     header_libs: [
